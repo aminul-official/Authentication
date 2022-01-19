@@ -1,0 +1,47 @@
+.img-input-label{
+    height: 190px !important;
+    width: 200px !important;
+    display: block;
+    font-size: 15px;
+    margin: 20px auto;
+    line-height: 12;
+    border: none;
+    color: #dcdada;
+    outline: none;
+    border-radius: 6px;
+    background: #c0c0c0;
+    box-shadow: inset -6px 6px 12px #b4b4b4, inset 6px -6px 12px #cccccc
+}
+
+.country-select{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    color: #484848;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.country-select .flag-dropdown{
+    margin: 0 0 0 33px;
+}
+.country-select .country-list{
+    background-color: #e5e5e5;
+}
+
+#UNIQUE_ID{
+    height: 100%;
+    width: 100%;
+    padding-left: 85px;
+    font-size: 15px;
+    border: none;
+    color: #dcdada;
+    outline: none;
+    border-radius: 6px;
+    background: #c0c0c0;
+    box-shadow: inset -6px 6px 12px #b4b4b4, inset 6px -6px 12px #cccccc
+}
+
+input[type = 'file']{
+    display: none;
+}
