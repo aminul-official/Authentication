@@ -5,6 +5,7 @@ const errorHandler = require('./middleware/error');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
+const multer = require('multer');
 
 // require('dotenv').config()
 
@@ -19,8 +20,6 @@ const app = express();
 
 
 app.use(express.json());
-
-
 app.use(bodyParser.json());
 app.use(cors());
 app.use(fileUpload());

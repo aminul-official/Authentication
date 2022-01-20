@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -26,8 +26,9 @@ const Register = ({ user, setUser }) => {
 
   // preview image
 
-  const [previewImg, setPreviewImg] = useState(watch("image"));
+  const [previewImg, setPreviewImg] = useState('');
 
+  
   //fontawsome icons
   const facebookIcon = <FontAwesomeIcon icon={faFacebook} />;
   const linkedinIcon = <FontAwesomeIcon icon={faLinkedin} />;
@@ -52,7 +53,6 @@ const Register = ({ user, setUser }) => {
 
   //form submission
 
-
   const registerSubmit = (e, data) => {
     e.preventDefault();
     console.log("working");
@@ -65,49 +65,41 @@ const Register = ({ user, setUser }) => {
 
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
-  }
-  
-  
+      "Content-Type": "application/json",
+    },
+  };
+
   const onSubmit = (data) => {
     // data.country = country;
 
-    const imgBase64 = data.image[0].toString("base64");
+    // const imgBase64 = data.image[0].toString("base64");
+    const imgBase64 = data.image[0];
 
     console.log(imgBase64);
-    
-    
-    
     const formData = new FormData();
-    
-    formData.append('first_name', data.first_name);
-    formData.append('last_name', data.last_name);
-    // formData.append('image', data.image[0]);
-    formData.append('image', imgBase64);
-    formData.append('email', data.email);
-    formData.append('country', data.country);
-    formData.append('password', data.password);
 
+    formData.append("first_name", data.first_name);
+    formData.append("last_name", data.last_name);
+    formData.append('image', data.image[0]);
+    // formData.append("image", imgBase64);
+    // formData.append("file", imgBase64);
+    formData.append("email", data.email);
+    formData.append("country", data.country);
+    formData.append("password", data.password);
 
-    // axios.post(`${process.env.REACT_APP_BASE_URL}/registerUser`,formData,config)
-    //  axios.post(`http://localhost:5000/registerUser`,formData,config)
-   axios.post(`http://localhost:5000/api/auth/register`,formData,config)
-    .then(res => {
-      console.log(res);
-      console.log(formData);
-    })
-    .catch(err => console.log(err))
-};
-
-
-//   console.log(previewImg, watch("image"));
+    //  axios.post(`http://localhost:7000/registerUser`,formData,config)
+    axios.post(`http://localhost:5000/api/auth/register`, formData, config)
+      .then((res) => {
+        console.log(res);
+        console.log(formData);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
       <div className="container">
         <div className="text"> Register From </div>
-        {/* { previewImg !== undefined ||  <img src={previewImg} alt="Girl in a jacket" />} */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="fields">
             <label className="img-input-label" htmlFor="imgInput">
@@ -116,7 +108,6 @@ const Register = ({ user, setUser }) => {
             <input
               name="imgInput"
               id="imgInput"
-              // onChange={() => setPreviewImg(URL.createObjectURL(previewImg[0]))}
               className="file-input"
               type="file"
               accept="image/png, image/gif, image/jpeg"
